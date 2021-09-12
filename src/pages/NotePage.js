@@ -13,7 +13,7 @@ const NotePage = ({ match, history }) => {
   }, [noteId])
 
   let getNote = async () => {
-    if(noteId === 'new') return
+    if(noteId == 'new') return
     let response = await fetch(`http://localhost:8000/notes/${noteId}`)
     let data = await response.json()
     setNote(data)
@@ -29,13 +29,13 @@ const NotePage = ({ match, history }) => {
     })
   }
 
-  let updateNote = async () => {
+  const updateNote = async () => {
     await fetch(`http://localhost:8000/notes/${noteId}`, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json'
       },
-      body: JSON.stringify({...note, 'updated':new Date()})
+      body: JSON.stringify({...note, 'updated': new Date()})
     })
   }
 
@@ -72,14 +72,14 @@ const NotePage = ({ match, history }) => {
             <ArrowLeft onClick={handleSubmit} />
           </Link>
         </h3>
-        {noteId !== 'new' ? (
+        {noteId != 'new' ? (
           <button onClick={deleteNote}>Delete</button>
           ): (
-          <button onClick={createNote}>Done</button>
+          <button onClick={handleSubmit}>Done</button>
           )}
       </div>
 
-      <textarea onChange={(e) => {setNote({...note, 'body':e.target.value})}} value={note?.body}>
+      <textarea onChange={(e) => {setNote({...note, 'body':e.target.value})}} placeholder="Edit note" value={note?.body}>
 
       </textarea>
     </div>
