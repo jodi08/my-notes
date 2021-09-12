@@ -30,7 +30,7 @@ const NotePage = ({ match, history }) => {
   }
 
   const updateNote = async () => {
-    await fetch(`http://localhost:8000/notes/${noteId}`, {
+    await fetch(`http://localhost:8000/notes/${noteId}/`, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json'
@@ -55,7 +55,7 @@ const NotePage = ({ match, history }) => {
       deleteNote()
     } else if(noteId !== 'new') {
       updateNote()
-    } else if(noteId === 'new' && note.body !== null) {
+    } else if(noteId === 'new' && note !== null) {
       createNote()
     }
     
